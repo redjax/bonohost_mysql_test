@@ -1,0 +1,108 @@
+{
+    "name": "VSCode Dev Container Test",
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined"
+        // "--env-file"
+        // ".devctonainer/devcontainer.env"
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "context": "..",
+        "target": "dev"
+    },
+    "customizations": {
+        "settings": {
+            "terminal.integrated.scrollback": 100000,
+            "terminal.integrated.profiles.linux": {
+                "bash": {
+                    "path": "/bin/bash"
+                }
+            },
+            "terminal.integrated.defaultProfile.linux": "bash",
+            "python.pythonPath": "/usr/local/bin/python"
+        },
+        "vscode": {
+            "extensions": [
+                "formulahendry.auto-complete-tag",
+                "rogalmic.bash-debug",
+                "mads-hartmann.bash-ide-vscode",
+                "samuelcolvin.jinjahtml",
+                "ms-python.black-formatter",
+                "jomeinaster.bracket-peek",
+                "ms-azuretools.vscode-docker",
+                "janisdd.vscode-edit-csv",
+                "tamasfe.even-better-toml",
+                "Wattenberger.footsteps",
+                "mhutchie.git-graph",
+                "ecmel.vscode-html-css",
+                "mohd-akram.vscode-html-format",
+                "bradgashler.htmltagwrap",
+                "VisualStudioExptTeam.vscodeintellicode",
+                "VisualStudioExptTeam.vscodeintellicode-completions",
+                "ms-toolsai.jupyter",
+                "ms-toolsai.vscode-jupyter-cell-tags",
+                "yzhang.markdown-all-in-one",
+                "ionutvmi.path-autocomplete",
+                "christian-kohler.path-intellisense",
+                "ms-dotnettools.dotnet-interactive-vscode",
+                "ms-python.vscode-pylance",
+                "ms-python.python",
+                "donjayamanne.python-environment-manager",
+                "donjayamanne.python-extension-pack",
+                "njqdev.vscode-python-typehint",
+                "mutantdino.resourcemonitor",
+                "charliermarsh.ruff",
+                "foxundermoon.shell-format",
+                "mtxr.sqltools",
+                "pflannery.vscode-versionlens",
+                "redhat.vscode-yaml"
+            ]
+        }
+    },
+    "remoteUser": "vscode",
+    "containerUser": "vscode",
+    // Use 'appPort' to create a container with published ports. If the port isn't working, be sure
+    // your server accepts connections from all interfaces (0.0.0.0 or '*'), not just localhost.
+    // "appPort": [],
+    "forwardPorts": [
+        3000
+    ],
+    // Uncomment the next line to run commands after the container is created.
+    "postCreateCommand": "gcc -v",
+    "mounts": [
+        // Mount host's SSH dir so keys are available in container
+        "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+    ],
+    "features": {
+        // "azure-cli": "latest"
+        // Run Docker inside the container, independent of host, for launching containers
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/git:1": {},
+        // Install apt packages. These packages can be defined in the Dockerfile
+        // as well. If you are installing packages in the Dockerfile,
+        // don't add them here
+        // "ghcr.io/devcontainers-contrib/features/apt-packages:1": {
+        //     "packages": [
+        //         "git",
+        //         "neovim",
+        //         "curl",
+        //         "wget",
+        //         "iputils-ping",
+        //         "build-essential",
+        //         "ca-certificates",
+        //         "apt-utils",
+        //         "dialog"
+        //     ]
+        // },
+        //Black formatter
+        "ghcr.io/devcontainers-contrib/features/black:2": {},
+        // Install packages with pipx
+        "ghcr.io/devcontainers-contrib/features/pipx-package:1": {
+            "package": "pdm"
+        },
+        "ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+        "ghcr.io/devcontainers/features/sshd:1": {}
+    }
+}

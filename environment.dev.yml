@@ -1,0 +1,24 @@
+name: bonohost-mysql-dev
+channels:
+  - nodefaults
+  - conda-forge
+variables:
+  ENV_FOR_DYNACONF: dev
+dependencies:
+  - python>=3.10
+  - pip>=23.0
+  - pymysql
+  - dynaconf
+  - sqlalchemy
+  - loguru
+  - msgspec
+  - pendulum
+  - stackprinter
+  - fastparquet
+  - jupyter
+  - sshtunnel
+  - black
+  - ruff
+  - pytest
+  - pip:
+      - red-utils

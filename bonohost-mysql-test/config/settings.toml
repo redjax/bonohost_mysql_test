@@ -1,0 +1,30 @@
+[default]
+
+env = "prod"
+container_dev = false
+log_level = "INFO"
+
+db_type = ""
+db_host = ""
+db_port = ""
+db_user = ""
+db_database = ""
+
+ssh_host = ""
+ssh_user = ""
+
+[dev]
+
+env = "dev"
+log_level = "DEBUG"
+
+db_type = ""
+db_host = ""
+db_port = 0
+db_user = ""
+db_database = ""
+
+ssh_host = ""
+ssh_user = ""
+
+[prod]
